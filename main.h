@@ -1,7 +1,7 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-int _printf(custom char *format, ...);
+int _printf(const char *format, ...);
 
 #endif /* MAIN_H */
 
@@ -14,7 +14,7 @@ int _printf(custom char *format, ...);
  * _printf - function for printf
  *@format: the thing
  */
-void _printf(const char *format, ...)
+int _printf(const char *format, ...)
 {
 	va_list args;
 va_start(args, format);
