@@ -5,14 +5,13 @@
 #include <stdarg.h>
 /**
  * _print - function for printf
- *
+ *@format: the thing
  */
 void _print(const char *format, ...)
 {
 	va_list args;
-	va_start(args, format);
-
-	while (*format != '\0')
+va_start(args, format);
+		while (*format != '\0')
 	{
 		if (*format == '%')
 		{
@@ -20,12 +19,12 @@ void _print(const char *format, ...)
 			if (*format == 'd')
 			{
 				int num = va_arg(args, int);
-				printf("%d", num);
+printf("%d", num);
 			}
 			else if (*format == 's')
 			{
 				char *str = va_arg(args, char *);
-				printf("%s", str);
+printf("%s", str);
 			}
 		}
 		else
@@ -36,4 +35,5 @@ void _print(const char *format, ...)
 	}
 	va_end(args);
 }
+
 #endif /*PRINTF_CUSTOM_H */
