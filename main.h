@@ -1,3 +1,12 @@
+#ifndef MAIN_H
+#define MAIN_H
+
+#include "printf_custom.h"
+
+int _print(custom char *format, ...);
+
+#endif /* MAIN_H */
+
 #ifndef PRINTF_CUSTOM_H
 #define PRINTF_CUSTOM_H
 
