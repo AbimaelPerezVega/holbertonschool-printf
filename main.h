@@ -1,9 +1,7 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-#include "printf_custom.h"
-
-int _print(custom char *format, ...);
+int _printf(custom char *format, ...);
 
 #endif /* MAIN_H */
 
@@ -13,10 +11,10 @@ int _print(custom char *format, ...);
 #include <stdio.h>
 #include <stdarg.h>
 /**
- * _print - function for printf
+ * _printf - function for printf
  *@format: the thing
  */
-void _print(const char *format, ...)
+void _printf(const char *format, ...)
 {
 	va_list args;
 va_start(args, format);
