@@ -1,6 +1,3 @@
-Este proyecto es para crear un comando clone of printf
-printf is the C language function to do formatted printing. 
-The same function is also available in
-PERL. This paper explains how printf works, and
-how to design the proper formatting specification for
-any occasion. 
+Este proyecto es para crear un comando clone of printf.
+Printf is the C language function to do formatted printing.
+The printf() function is present in <stdio.h> header and uses a const char* and variable length arguments as its parameters.

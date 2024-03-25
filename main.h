@@ -12,12 +12,15 @@ int _printf(const char *format, ...);
 #include <stdarg.h>
 /**
  * _printf - function for printf
- *@format: the thing
+ * @format: the thing
+ *
+ * Return: 0 the number of characters printed
  */
 int _printf(const char *format, ...)
 {
 	va_list args;
 va_start(args, format);
+
 		while (*format != '\0')
 	{
 		if (*format == '%')
@@ -41,6 +44,7 @@ printf("%s", str);
 		format++;
 	}
 	va_end(args);
-}
 
+	return (0);
+}
 #endif /*PRINTF_CUSTOM_H */
