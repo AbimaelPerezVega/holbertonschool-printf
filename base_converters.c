@@ -101,4 +101,3 @@ unsigned int convert_unsigned_base(buffer_t *buffer, unsigned long num, const ch
 
     return count;
 }
-
