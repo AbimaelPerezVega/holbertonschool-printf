@@ -137,7 +137,7 @@ num /= 10;
 }
 i++;
 
-return (write_number(is_negative, i, buffer, flags, width, precision, size));
+return (fwrite_number(is_negative, i, buffer, flags, width, precision, size));
 }
 /***PRINT BINARY***/
 /**
@@ -178,8 +178,8 @@ if (sum || i == 31)
 {
 char z = '0' + a[i];
 
-write(1, &z, 1);
-count++
+fwrite(1, &z, 1);
+count++;
 }
 }
 return (count);
