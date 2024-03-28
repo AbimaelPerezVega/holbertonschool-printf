@@ -1,103 +1,103 @@
-#include "custom_formatter.h"
+#include "main.h"
 
-unsigned int convert_signed_base(buffer_t *buffer, long num, const char *base, unsigned char flags, int width, int precision);
-unsigned int convert_unsigned_base(buffer_t *buffer, unsigned long num, const char *base, unsigned char flags, int width, int precision);
+unsigned int convert_sbase(buffer_t *output, long int num, char *base,
+		unsigned char flags, int w, int pre);
+unsigned int convert_ubase(buffer_t *output,
+		unsigned long int num, char *base,
+		unsigned char flags, int w, int pre);
 
 /**
- * convert_signed_base - Converts a signed number to a specified base and stores
- *                       the result in a buffer.
- * @buffer: The buffer structure to store result.
- * @num: The number to convert.
- * @base: The base for conversion.
- * @flags: Modifier flags.
- * @width: Width modifier.
- * @precision: Precision modifier.
+ * convert_sbase - converts a signed long to an inputted base and stores
+ *                 the result to a buffer contained in a struct.
+ * @output: buffer_t struct containing a character array.
+ * @num: signed long to be converted.
+ * @base: pointer to a string containing the base to convert to.
+ * @flags: flag modifiers.
+ * @w: width modifier.
+ * @pre: precision modifier.
  *
- * Return: Number of characters added to the buffer.
+ * Return: number of bytes stored to the buffer.
  */
-unsigned int convert_signed_base(buffer_t *buffer, long num, const char *base,
-                                  unsigned char flags, int width, int precision)
+unsigned int convert_sbase(buffer_t *output, long int num, char *base,
+		unsigned char flags, int w, int pre)
 {
-    int base_len = 0;
-    char digit;
-    unsigned int count = 0;
-    long value = num;
+	int size;
+	char digit, pad = '0';
+	unsigned int ret = 1;
 
-    // Calculate base length
-    while (base[base_len] != '\0') base_len++;
+	for (size = 0; *(base + size);)
+		size++;
 
-    // Recursive conversion for numbers larger than the base
-    if (value >= base_len || value <= -base_len) {
-        count += convert_signed_base(buffer, value / base_len, base, flags, width - 1, precision - 1);
-    } else {
-        // Handle precision and width for positive values
-        while (precision > 1 || (width > 1 && !(flags & NEG_FLAG))) {
-            _memcpy(buffer, "0", 1);
-            count++;
-            precision--;
-            width--;
-        }
-    }
+	if (num >= size || num <= -size)
+		ret += convert_sbase(output, num / size, base,
+				flags, w - 1, pre - 1);
 
-    // Convert single digit and add to buffer
-    digit = base[(value < 0 ? -value : value) % base_len];
-    _memcpy(buffer, &digit, 1);
-    count++;
+	else
+	{
+		for (; pre > 1; pre--, w--) /* Handle precision */
+			ret += _memcpy(output, &pad, 1);
 
-    // Handle negative width (left justify)
-    while (count < (unsigned)width) {
-        _memcpy(buffer, " ", 1);
-        count++;
-    }
+		if (NEG_FLAG == 0) /* Handle width */
+		{
+			pad = (ZERO_FLAG == 1) ? '0' : ' ';
+			for (; w > 1; w--)
+				ret += _memcpy(output, &pad, 1);
+		}
+	}
 
-    return count;
+	digit = base[(num < 0 ? -1 : 1) * (num % size)];
+	_memcpy(output, &digit, 1);
+
+	return (ret);
 }
 
 /**
- * convert_unsigned_base - Converts an unsigned number to a specified base and
- *                         stores the result in a buffer.
- * @buffer: The buffer structure to store result.
- * @num: The number to convert.
- * @base: The base for conversion.
- * @flags: Modifier flags.
- * @width: Width modifier.
- * @precision: Precision modifier.
+ * convert_ubase - Converts an unsigned long to an inputted base and
+ *                 stores the result to a buffer contained in a struct
+ * @output: buffer_t struct containing a character array
+ * @num: unsigned long to be converted
+ * @base: pointer to a string containing the base to convert to
+ * @flags: flag modifiers
+ * @w: width modifier
+ * @pre: precision modifier
  *
- * Return: Number of characters added to the buffer.
+ * Return: number of bytes stored to the buffer.
  */
-unsigned int convert_unsigned_base(buffer_t *buffer, unsigned long num, const char *base,
-                                   unsigned char flags, int width, int precision)
+unsigned int convert_ubase(buffer_t *output, unsigned long int num, char *base,
+		unsigned char flags, int w, int pre)
 {
-    unsigned int base_len = 0, count = 0;
-    char digit;
-    unsigned long value = num;
+	unsigned int size, ret = 1;
+	char digit, pad = '0', *lead = "0x";
 
-    // Calculate base length
-    while (base[base_len] != '\0') base_len++;
+	for (size = 0; *(base + size);)
+		size++;
 
-    // Recursive conversion for numbers larger than the base
-    if (value >= base_len) {
-        count += convert_unsigned_base(buffer, value / base_len, base, flags, width - 1, precision - 1);
-    } else {
-        // Handle precision and width for positive values
-        while (precision > 1 || (width > 1 && !(flags & NEG_FLAG))) {
-            _memcpy(buffer, "0", 1);
-            count++;
-            precision--;
-            width--;
-        }
-    }
+	if (num >= size)
+		ret += convert_ubase(output, num / size, base,
+				flags, w - 1, pre - 1);
 
-    // Convert single digit and add to buffer
-    digit = base[value % base_len];
-    _memcpy(buffer, &digit, 1);
-    count++;
+	else
+	{
+		if (((flags >> 5) & 1) == 1) /* Printing a ptr address */
+		{
+			w -= 2;
+			pre -= 2;
+		}
+		for (; pre > 1; pre--, w--) /* Handle precision */
+			ret += _memcpy(output, &pad, 1);
 
-    // Handle negative width (left justify)
-    while (count < (unsigned)width) {
-        _memcpy(buffer, " ", 1);
-        count++;
-    }
+		if (NEG_FLAG == 0) /* Handle width */
+		{
+			pad = (ZERO_FLAG == 1) ? '0' : ' ';
+			for (; w > 1; w--)
+				ret += _memcpy(output, &pad, 1);
+		}
+		if (((flags >> 5) & 1) == 1) /* Print 0x for ptr address */
+			ret += _memcpy(output, lead, 2);
+	}
 
-    return count;
+	digit = base[(num % size)];
+	_memcpy(output, &digit, 1);
+
+	return (ret);
 }
