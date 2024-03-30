@@ -91,7 +91,7 @@ unsigned int convert_S(va_list args, buffer_t *output,
 			if (*(str + i) < 16)
 				ret += _memcpy(output, &zero, 1);
 			ret += convert_ubase(output, *(str + i),
-					     "0123456789ABCDEF", flags, 0, 0);
+				     "0123456789ABCDEF", flags, 0, 0);
 			continue;
 		}
 		ret += _memcpy(output, (str + i), 1);
@@ -114,41 +114,42 @@ unsigned int convert_S(va_list args, buffer_t *output,
  * Return: number of bytes stored to the buffer
  */
 unsigned int convert_R(va_list args, buffer_t *output,
-                       unsigned char flags, int w, int pre, unsigned char len)
+		unsigned char flags, int w, int pre, unsigned char len)
 {
-    char *alpha = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    char *rot13 = "nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM";
-    char *str = va_arg(args, char *);
-    char *null = "(null)";
-    int i, j, size = 0;
-    unsigned int ret = 0;
+	char *alpha = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	char *rot13 = "nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM";
+	char *str = va_arg(args, char *);
+	char *null = "(null)";
+	int i, j, size = 0;
+	unsigned int ret = 0;
 
-    (void)flags;
-    (void)len;
+	(void)flags;
+	(void)len;
 
-    if (str == NULL)
-        return (_memcpy(output, null, 6));
+	if (str == NULL)
 
-    while (*(str + size))
-        size++;
+	return (_memcpy(output, null, 6));
 
-    ret += print_string_width(output, flags, w, pre == -1 ? size : pre, size);
+	while (*(str + size))
+	size++;
 
-    for (i = 0; *(str + i) != '\0' && i < pre; i++)
-    {
-        for (j = 0; j < 52; j++)
-        {
-            if (*(str + i) == *(alpha + j))
-            {
-                ret += _memcpy(output, (rot13 + j), 1);
-                break;
-            }
-        }
-        if (j == 52)
-            ret += _memcpy(output, (str + i), 1);
-    }
+	ret += print_string_width(output, flags, w, pre == -1 ? size : pre, size);
 
-    ret += print_neg_width(output, ret, flags, w);
+	for (i = 0; *(str + i) != '\0' && i < pre; i++)
+	{
+		for (j = 0; j < 52; j++)
+		{
+			if (*(str + i) == *(alpha + j))
+			{
+			ret += _memcpy(output, (rot13 + j), 1);
+			break;
+			}
+		}
+		if (j == 52)
+		ret += _memcpy(output, (str + i), 1);
+	}
 
-    return ret;
+	ret += print_neg_width(output, ret, flags, w);
+
+	return (ret);
 }
