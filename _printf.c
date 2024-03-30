@@ -23,7 +23,7 @@ int _printf(const char *format, ...)
             {
                 char *s = va_arg(args, char *);
                 if (s == NULL) {
-                    s = "(null)";
+                    s = "(NULL)";
                 }
                 while (*s)
                 {
