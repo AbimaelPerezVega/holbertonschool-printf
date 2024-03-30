@@ -14,7 +14,12 @@ int _printf(const char *format, ...)
         if (*format == '%')
         {
             format++;
-            if (*format == 'c')
+            if (*format == '\0') {
+                // Handle case when '%' is at the end of format string
+                count += write(1, "%", 1);
+                break;  // Exit loop since '%' is last character
+            }
+            else if (*format == 'c')
             {
                 char c = (char)va_arg(args, int);
                 count += write(1, &c, 1);
@@ -46,4 +51,3 @@ int _printf(const char *format, ...)
 
     return count;
 }
-
