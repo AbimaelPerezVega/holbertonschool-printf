@@ -1,4 +1,8 @@
 #include "main.h"
+/**
+ * handlers - all funcion
+ *
+ */
 
 unsigned char handle_flags(const char *flag, char *i);
 unsigned char handle_length(const char *modifier, char *i);
@@ -48,7 +52,6 @@ unsigned char handle_flags(const char *flag, char *i)
 
 	return (ret);
 }
-
 /**
  * handle_length - matches length modifiers with their corresponding value.
  * @modifier: pointer to a potential length modifier.
@@ -106,7 +109,6 @@ int handle_width(va_list args, const char *modifier, char *i)
 
 	return (value);
 }
-
 /**
  * handle_precision - matches a precision modifier with
  *                    its corresponding value.
@@ -156,13 +158,12 @@ int handle_precision(va_list args, const char *modifier, char *i)
 
 	return (value);
 }
-
 /**
- * handle_specifiers - Matches a conversion specifier with
+ * handle_specifiers - matches a conversion specifier with
  *                     a corresponding conversion function.
- * @specifier: A pointer to a potential conversion specifier.
+ * @specifier: pointer to a potential conversion specifier.
  *
- * Return: If a conversion function is matched - a pointer to the function.
+ * Return: conversion function is matched - a pointer to the function.
  *         Otherwise - NULL.
  */
 unsigned int (*handle_specifiers(const char *specifier))(va_list, buffer_t *,
