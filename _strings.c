@@ -140,7 +140,7 @@ unsigned int convert_r(va_list args, buffer_t *output,
 
     ret += print_neg_width(output, ret, flags, w);
 
-    return (ret);
+    return ret;
 }
 /**
  * convert_R - converts a string to ROT13 and stores
@@ -191,5 +191,5 @@ unsigned int convert_R(va_list args, buffer_t *output,
 
     ret += print_neg_width(output, ret, flags, w);
 
-    return (ret);
+    return ret;
 }
