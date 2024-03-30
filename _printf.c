@@ -1,4 +1,4 @@
-i#include "main.h"
+#include "main.h"
 #include <stdarg.h>
 #include <unistd.h>
 
@@ -22,6 +22,9 @@ int _printf(const char *format, ...)
             else if (*format == 's')
             {
                 char *s = va_arg(args, char *);
+                if (s == NULL) {
+                    s = "(null)";
+                }
                 while (*s)
                 {
                     count += write(1, s++, 1);
@@ -43,3 +46,4 @@ int _printf(const char *format, ...)
 
     return count;
 }
+
