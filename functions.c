@@ -1,4 +1,7 @@
 #include "main.h"
+
+int handle_write_char(char c, char buffer[], int flags, int width, int precision, int size);
+
 /***PRINT CHAR***/
 
 /**
@@ -104,7 +107,10 @@ return (handle_print("%%", 0, types, buffer, flags, width, precision, size));
 int print_int(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
-long int n = va_arg(types, long int);
+	UNUSED(flags);
+	UNUSED(width);
+	UNUSED(precision);
+	UNUSED(size);
 
 return (handle_print("%ld", 0, types, buffer, flags, width, precision, size));
 }
@@ -123,7 +129,10 @@ return (handle_print("%ld", 0, types, buffer, flags, width, precision, size));
 int print_binary(va_list types, char buffer[],
 		int flags, int width, int precision, int size)
 {
-unsigned int n = va_arg(types, unsigned int);
+	UNUSED(flags);
+	UNUSED(width);
+	UNUSED(precision);
+	UNUSED(size);
 
 return (handle_print("%u", 0, types, buffer, flags, width, precision, size));
 }

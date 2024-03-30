@@ -18,6 +18,13 @@
 /* SIZE */
 #define S_LONG 2
 #define S_SHORT 1
+
+/**
+ *
+ *
+*/
+int handle_write_char(char c, char buffer[], int flags, int width, int precision, int size);
+
 /**
  *struct fmt - struct up
  *L0MAX
