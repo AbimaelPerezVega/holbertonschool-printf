@@ -1,6 +1,7 @@
 #include "main.h"
 #include <stdarg.h>
 #include <unistd.h>
+#include <stdio.h> // for NULL definition
 
 int _printf(const char *format, ...)
 {
@@ -54,3 +55,4 @@ int _printf(const char *format, ...)
 
     return count;
 }
+
