@@ -1,7 +1,7 @@
 #include "main.h"
 #include <stdarg.h>
 #include <unistd.h>
-#include <stdio.h> // for NULL definition
+#include <stdio.h>
 
 int _printf(const char *format, ...)
 {
