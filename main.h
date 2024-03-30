@@ -23,10 +23,10 @@
 #define LONG 2
 
 /**
- * struct buffer_s - new type defining a buffer struct.
- * @buffer: pointer to a character array.
- * @start: pointer to the start of buffer.
- * @len: length of the string stored in buffer.
+ * struct buffer_s - new type defining a buffer struct
+ * @buffer: pointer to a character array
+ * @start: pointer to the start of buffer
+ * @len: length of the string stored in buffer
  */
 typedef struct buffer_s
 {
@@ -36,9 +36,9 @@ typedef struct buffer_s
 } buffer_t;
 
 /**
- * struct converter_s - new type defining a converter struct.
- * @specifier: character representing a conversion specifier.
- * @func: pointer to a conversion function corresponding to specifier.
+ * struct converter_s - new type defining a converter struct
+ * @specifier: character representing a conversion specifier
+ * @func: pointer to a conversion function corresponding to specifier
  */
 typedef struct converter_s
 {
@@ -48,17 +48,10 @@ typedef struct converter_s
 } converter_t;
 
 /**
-<<<<<<< HEAD
- * struct flag_s - new type defining a flags struct.
- * @flag: character representing a flag.
- * @value: integer value of the flag.
+ * struct flag_s - new type defining a flags struct
+ * @flag: character representing a flag
+ * @value: integer value of the flag
  */
-=======
- * struct flag_s - A new type defining a flags struct.
- * @flag: A character representing a flag.
- * @value: The integer value of the flag.
-*/
->>>>>>> 6d0b2d5e13c0105db42559ce2144453fcbf5e51d
 typedef struct flag_s
 {
 	unsigned char flag;
