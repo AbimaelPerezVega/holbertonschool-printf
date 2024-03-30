@@ -15,9 +15,8 @@ int _printf(const char *format, ...)
         {
             format++;
             if (*format == '\0') {
-                // Handle case when '%' is at the end of format string
                 count += write(1, "%", 1);
-                break;  // Exit loop since '%' is last character
+                break;
             }
             else if (*format == 'c')
             {
