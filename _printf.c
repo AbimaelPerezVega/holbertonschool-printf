@@ -1,4 +1,4 @@
-#include "main.h"
+i#include "main.h"
 #include <stdarg.h>
 #include <unistd.h>
 
@@ -6,7 +6,6 @@ int _printf(const char *format, ...)
 {
     va_list args;
     int count = 0;
-    char buffer[2] = {'\0', '\0'};
 
     va_start(args, format);
 
@@ -17,31 +16,25 @@ int _printf(const char *format, ...)
             format++;
             if (*format == 'c')
             {
-                buffer[0] = va_arg(args, int);
-                write(1, buffer, 1);
-                count++;
+                char c = (char)va_arg(args, int);
+                count += write(1, &c, 1);
             }
             else if (*format == 's')
             {
                 char *s = va_arg(args, char *);
                 while (*s)
                 {
-                    buffer[0] = *s++;
-                    write(1, buffer, 1);
-                    count++;
+                    count += write(1, s++, 1);
                 }
             }
             else if (*format == '%')
             {
-                write(1, "%", 1);
-                count++;
+                count += write(1, "%", 1);
             }
         }
         else
         {
-            buffer[0] = *format;
-            write(1, buffer, 1);
-            count++;
+            count += write(1, format, 1);
         }
         format++;
     }
@@ -50,4 +43,3 @@ int _printf(const char *format, ...)
 
     return count;
 }
-
