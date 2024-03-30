@@ -51,7 +51,7 @@ typedef struct converter_s
  * struct flag_s - A new type defining a flags struct.
  * @flag: A character representing a flag.
  * @value: The integer value of the flag.
- */
+*/
 typedef struct flag_s
 {
 	unsigned char flag;
