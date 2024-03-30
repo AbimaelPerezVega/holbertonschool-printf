@@ -33,19 +33,19 @@ unsigned int convert_x(va_list args, buffer_t *output,
     if (HASH_FLAG == 1 && num != 0)
         ret += _memcpy(output, "0x", 2);
 
-    return ret;
+    return (ret);
 }
 /**
- * convert_X - Converts an unsigned int argument to hex using ABCDEF
+ * convert_X - converts an unsigned int argument to hex using ABCDEF
  *             and stores it to a buffer contained in a struct.
- * @args: A va_list pointing to the argument to be converted.
+ * @args: va_list pointing to the argument to be converted.
  * @flags: Flag modifiers.
- * @wid: A width modifier.
- * @prec: A precision modifier.
- * @len: A length modifier.
- * @output: A buffer_t struct containing a character array.
+ * @w: width modifier.
+ * @pre: precision modifier.
+ * @len: length modifier.
+ * @output: buffer_t struct containing a character array.
  *
- * Return: The number of bytes stored to the buffer.
+ * Return: number of bytes stored to the buffer.
  */
 unsigned int convert_X(va_list args, buffer_t *output,
                        unsigned char flags, int w, int pre, unsigned char len)
@@ -64,5 +64,5 @@ unsigned int convert_X(va_list args, buffer_t *output,
 
     ret += print_neg_width(output, ret, flags, w);
 
-    return ret;
+    return (ret);
 }

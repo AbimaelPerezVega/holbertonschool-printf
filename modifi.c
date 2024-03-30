@@ -37,20 +37,20 @@ unsigned int print_width(buffer_t *output, unsigned int printed,
  * @output: buffer_t struct containing a character array
  * @flags: flag modifiers
  * @w: width modifier
- * @prec: precision modifier
+ * @pre: precision modifier
  * @size: size of the string
  *
  * Return: number of bytes stored to the buffer
  */
 unsigned int print_string_width(buffer_t *output,
-		unsigned char flags, int w, int prec, int size)
+		unsigned char flags, int w, int pre, int size)
 {
 	unsigned int ret = 0;
 	char width = ' ';
 
 	if (NEG_FLAG == 0)
 	{
-		w -= (prec == -1) ? size : prec;
+		w -= (pre == -1) ? size : pre;
 		for (; w > 0; w--)
 			ret += _memcpy(output, &width, 1);
 	}

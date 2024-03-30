@@ -68,7 +68,7 @@ unsigned int convert_percent(va_list args, buffer_t *output,
  * @args: va_list pointing to the argument to be converted.
  * @flags: flag modifiers.
  * @w: width modifier.
- * @pre: A precision modifier.
+ * @pre: precision modifier.
  * @len: length modifier.
  * @output: buffer_t struct containing a character array.
  *

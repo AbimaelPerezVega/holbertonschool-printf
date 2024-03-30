@@ -66,7 +66,7 @@ unsigned int convert_di(va_list args, buffer_t *output,
 
     ret += print_neg_width(output, ret, flags, w);
 
-    return ret;
+    return (ret);
 }
 /**
  * convert_b - converts an unsigned int argument to binary
@@ -123,7 +123,7 @@ unsigned int convert_o(va_list args, buffer_t *output,
 
     ret += print_neg_width(output, ret, flags, w);
 
-    return ret;
+    return (ret);
 }
 /**
  * convert_u - converts an unsigned int argument to decimal and
@@ -155,5 +155,5 @@ unsigned int convert_u(va_list args, buffer_t *output,
 
     ret += print_neg_width(output, ret, flags, w);
 
-    return ret;
+    return (ret);
 }
