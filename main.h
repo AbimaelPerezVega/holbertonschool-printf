@@ -48,10 +48,17 @@ typedef struct converter_s
 } converter_t;
 
 /**
+<<<<<<< HEAD
  * struct flag_s - new type defining a flags struct.
  * @flag: character representing a flag.
  * @value: integer value of the flag.
  */
+=======
+ * struct flag_s - A new type defining a flags struct.
+ * @flag: A character representing a flag.
+ * @value: The integer value of the flag.
+*/
+>>>>>>> 6d0b2d5e13c0105db42559ce2144453fcbf5e51d
 typedef struct flag_s
 {
 	unsigned char flag;
