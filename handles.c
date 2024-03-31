@@ -1,18 +1,10 @@
 #include "main.h"
 
-/**
- * handle_flags - Matches flags with corresponding values.
- * @flag: Pointer to a potential string of flags.
- * @i: Index counter for the original format string.
- *
- * Return: Flag character.
- */
 unsigned char handle_flags(const char *flag, char *i);
 unsigned char handle_length(const char *modifier, char *i);
 int handle_width(va_list args, const char *modifier, char *i);
 int handle_precision(va_list args, const char *modifier, char *i);
-unsigned int (*handle_specifiers(const char *specifier))(va_list, buffer_t *,
-		unsigned char, int, int, unsigned char);
+unsigned int (*handle_specifiers(const char *specifier))(va_list, buffer_t *, unsigned char, int, int, unsigned char);
 /**
  * handle_flags - Matches flags with corresponding values.
  * @flag: Pointer to a potential string of flags.
@@ -157,14 +149,12 @@ int handle_precision(va_list args, const char *modifier, char *i)
 	return (value);
 }
 /**
- * handle_specifiers - Matches a conversion specifier with a
- * corresponding conversion function.
- * @specifier: Pointer to a potential conversion specifier.
+ * handle_specifiers - matches conversion spec. with corresponding conversion
+ * @specifier: Pointer to a potential conversion specifier
  *
- * Return: Pointer to the conversion function if matched; otherwise, NULL.
+ * Return: Pointer to the conversion function if matched; otherwise, NULL
  */
-unsigned int (*handle_specifiers(const char *specifier))(va_list, buffer_t *,
-		unsigned char, int, int, unsigned char)
+unsigned int (*handle_specifiers(const char *specifier))(va_list, buffer_t *, unsigned char, int, int, unsigned char)
 {
 	int i;
 	converter_t converters[] = {

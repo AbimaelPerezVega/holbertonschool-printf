@@ -93,7 +93,7 @@ unsigned char handle_flags(const char *flags, char *i);
 unsigned char handle_length(const char *modifier, char *i);
 int handle_width(va_list args, const char *modifier, char *i);
 int handle_precision(va_list args, const char *modifier, char *i);
-unsigned int (*handle_specifiers(const char *specifier))(va_list, buffer_t *,
+unsigned int (*h_s(const char *s))(va_list, buffer_t *,
 		unsigned char, int, int, unsigned char);
 
 /* Modifiers */
