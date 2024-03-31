@@ -1,23 +1,24 @@
 #include "main.h"
-/**
- * handlers - all funcion
- *
- */
 
+/**
+ * handle_flags - Matches flags with corresponding values.
+ * @flag: Pointer to a potential string of flags.
+ * @i: Index counter for the original format string.
+ *
+ * Return: Flag character.
+ */
 unsigned char handle_flags(const char *flag, char *i);
 unsigned char handle_length(const char *modifier, char *i);
 int handle_width(va_list args, const char *modifier, char *i);
 int handle_precision(va_list args, const char *modifier, char *i);
 unsigned int (*handle_specifiers(const char *specifier))(va_list, buffer_t *,
 		unsigned char, int, int, unsigned char);
-
 /**
- * handle_flags - matches flags with corresponding values.
- * @flag: pointer to a potential string of flags.
- * @i: index counter for the original format string.
+ * handle_flags - Matches flags with corresponding values.
+ * @flag: Pointer to a potential string of flags.
+ * @i: Index counter for the original format string.
  *
- * Return: If flag characters are matched - a corresponding value.
- *         Otherwise - 0.
+ * Return: Flag character.
  */
 unsigned char handle_flags(const char *flag, char *i)
 {
@@ -53,12 +54,11 @@ unsigned char handle_flags(const char *flag, char *i)
 	return (ret);
 }
 /**
- * handle_length - matches length modifiers with their corresponding value.
- * @modifier: pointer to a potential length modifier.
- * @i: index counter for the original format string.
+ * handle_length - Matches length modifiers with their corresponding value.
+ * @modifier: Pointer to a potential length modifier.
+ * @i: Index counter for the original format string.
  *
- * Return: lenth modifier is matched - its corresponding value.
- *         Otherwise - 0.
+ * Return: Length modifier if matched; otherwise, 0.
  */
 unsigned char handle_length(const char *modifier, char *i)
 {
@@ -78,13 +78,12 @@ unsigned char handle_length(const char *modifier, char *i)
 }
 
 /**
- * handle_width - matches a width modifier with its corresponding value.
- * @args: va_list of arguments.
- * @modifier: pointer to a potential width modifier.
- * @i: index counter for the original format string.
+ * handle_width - Matches a width modifier with its corresponding value.
+ * @args: Va_list of arguments.
+ * @modifier: Pointer to a potential width modifier.
+ * @i: Index counter for the original format string.
  *
- * Return: width modifier is matched - its value.
- *         Otherwise - 0.
+ * Return: Width modifier if matched; otherwise, 0.
  */
 int handle_width(va_list args, const char *modifier, char *i)
 {
@@ -110,15 +109,14 @@ int handle_width(va_list args, const char *modifier, char *i)
 	return (value);
 }
 /**
- * handle_precision - matches a precision modifier with
- *                    its corresponding value.
- * @args: va_list of arguments.
- * @modifier: pointer to a potential precision modifier.
- * @i: index counter for the original format string.
+ * handle_precision - Matches a precision modifier with its
+ * corresponding value.
+ * @args: Va_list of arguments.
+ * @modifier: Pointer to a potential precision modifier.
+ * @i: Index counter for the original format string.
  *
- * Return: precision modifier is matched - its value.
- *         If the precision modifier is empty, zero, or negative - 0.
- *         Otherwise - -1.
+ * Return: Precision modifier if matched; otherwise, 0.
+ *
  */
 int handle_precision(va_list args, const char *modifier, char *i)
 {
@@ -159,12 +157,11 @@ int handle_precision(va_list args, const char *modifier, char *i)
 	return (value);
 }
 /**
- * handle_specifiers - matches a conversion specifier with
- *                     a corresponding conversion function.
- * @specifier: pointer to a potential conversion specifier.
+ * handle_specifiers - Matches a conversion specifier with a
+ * corresponding conversion function.
+ * @specifier: Pointer to a potential conversion specifier.
  *
- * Return: conversion function is matched - a pointer to the function.
- *         Otherwise - NULL.
+ * Return: Pointer to the conversion function if matched; otherwise, NULL.
  */
 unsigned int (*handle_specifiers(const char *specifier))(va_list, buffer_t *,
 		unsigned char, int, int, unsigned char)
